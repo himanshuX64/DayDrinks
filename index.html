@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Daydrink | Sip into Sunshine</title>
+  <!-- Google Fonts & Smooth Scroll -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FEF9E6;  /* warm sand base */
+      overflow-x: hidden;
+      color: #2C2418;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FFE8C5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FF9F4A;
+      border-radius: 12px;
+    }
+
+    /* Fluid typography & smooth */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* main container */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      background: linear-gradient(145deg, #FFF3E0 0%, #FFE2B5 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+    }
+
+    /* floating citrus elements */
+    .floating-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .float-item {
+      position: absolute;
+      opacity: 0.25;
+      animation: floatAround 18s infinite ease-in-out;
+      font-size: 5rem;
+    }
+    .float-item:nth-child(1) { top: 12%; left: 5%; animation-duration: 22s; opacity: 0.2; font-size: 6rem;}
+    .float-item:nth-child(2) { bottom: 15%; right: 3%; animation-duration: 19s; animation-delay: -2s; font-size: 7rem;}
+    .float-item:nth-child(3) { top: 40%; right: 12%; animation-duration: 25s; opacity: 0.2; font-size: 5rem;}
+    .float-item:nth-child(4) { bottom: 30%; left: 8%; animation-duration: 21s; animation-delay: -4s; font-size: 6rem;}
+    .float-item:nth-child(5) { top: 70%; left: 20%; animation-duration: 27s; opacity: 0.15; font-size: 8rem;}
+    .float-item:nth-child(6) { top: 15%; right: 25%; animation-duration: 17s; font-size: 4.5rem;}
+
+    @keyframes floatAround {
+      0% { transform: translateY(0px) rotate(0deg);}
+      50% { transform: translateY(-25px) rotate(8deg);}
+      100% { transform: translateY(0px) rotate(0deg);}
+    }
+
+    /* glassmorphic card */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 1200px;
+      width: 100%;
+      backdrop-filter: blur(2px);
+    }
+
+    .brand-badge {
+      display: inline-block;
+      background: rgba(255, 245, 225, 0.75);
+      backdrop-filter: blur(8px);
+      border-radius: 60px;
+      padding: 0.5rem 1.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #D9792B;
+      border: 1px solid rgba(255, 160, 70, 0.4);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 12vw, 6.5rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #F28C38, #C9510C, #F7B05E);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      text-shadow: 2px 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .tagline {
+      font-size: clamp(1.1rem, 4vw, 1.6rem);
+      color: #4A3724;
+      font-weight: 500;
+      max-width: 650px;
+      margin: 0 auto 1.8rem auto;
+      opacity: 0.85;
+      background: rgba(255,250,235,0.6);
+      backdrop-filter: blur(4px);
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      display: inline-block;
+    }
+
+    .flavor-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 2.5rem 0 2rem;
+    }
+
+    .flavor-chip {
+      background: rgba(255, 248, 235, 0.85);
+      backdrop-filter: blur(4px);
+      border-radius: 100px;
+      padding: 0.6rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #B65312;
+      border: 1px solid #FFD6A5;
+      transition: all 0.2s ease;
+      cursor: default;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .flavor-chip:hover {
+      transform: translateY(-3px);
+      background: #FFEED9;
+      border-color: #FFB468;
+      box-shadow: 0 10px 20px -8px rgba(231, 112, 20, 0.2);
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .btn-primary {
+      background: #F27E2E;
+      border: none;
+      padding: 1rem 2.4rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 10px 18px -8px rgba(242, 126, 46, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.3px;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: #E06518;
+      transform: scale(1.02);
+      box-shadow: 0 18px 25px -12px #F27E2E;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #E07C3A;
+      padding: 1rem 2.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 50px;
+      color: #B34A0E;
+      cursor: pointer;
+      transition: 0.2s;
+      backdrop-filter: blur(6px);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline:hover {
+      background: rgba(242, 126, 46, 0.1);
+      border-color: #F27E2E;
+      color: #F27E2E;
+      transform: translateY(-2px);
+    }
+
+    /* features section */
+    .features {
+      margin-top: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .feature-card {
+      background: rgba(255, 252, 245, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1.5rem 1.2rem;
+      width: 200px;
+      text-align: center;
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 200, 140, 0.6);
+      box-shadow: 0 12px 24px -16px rgba(0,0,0,0.1);
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 248, 235, 0.9);
+      border-color: #FFC085;
+    }
+    .feature-icon {
+      font-size: 2.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .feature-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: #C55614;
+    }
+    .feature-card p {
+      font-size: 0.8rem;
+      color: #5E3E23;
+      font-weight: 400;
+    }
+
+    /* BOTTLES showcase section (secondary) */
+    .showcase {
+      background: #FFF7EC;
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      color: #2C2418;
+      margin-bottom: 1rem;
+    }
+    .section-desc {
+      max-width: 600px;
+      margin: 0 auto 3rem auto;
+      color: #6F4E2E;
+      font-weight: 400;
+    }
+
+    .bottle-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.8rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .bottle-item {
+      background: white;
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2rem;
+      width: 260px;
+      transition: all 0.3s;
+      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.05);
+      border: 1px solid #FFE2BF;
+    }
+    .bottle-item:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 40px -18px rgba(231, 112, 20, 0.2);
+      border-color: #FFC07A;
+    }
+    .bottle-img {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+    .bottle-item h3 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+      color: #E76F1C;
+    }
+    .bottle-item .flavor-note {
+      font-size: 0.85rem;
+      color: #AA6F3C;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.2px;
+    }
+    .price {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #2C2418;
+      margin: 0.6rem 0;
+    }
+    .shop-btn {
+      background: none;
+      border: 1.5px solid #F5BC7A;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #C75813;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 0.5rem;
+    }
+    .shop-btn:hover {
+      background: #F27E2E;
+      color: white;
+      border-color: #F27E2E;
+    }
+
+    /* insta / footer */
+    .footer-wave {
+      background: #FEEAD3;
+      padding: 2.5rem 2rem 1.8rem;
+      text-align: center;
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.2rem;
+    }
+    .social-icon {
+      background: #FFE3C2;
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      transition: 0.2s;
+      cursor: pointer;
+      color: #C95B18;
+      text-decoration: none;
+    }
+    .social-icon:hover {
+      background: #F27E2E;
+      color: white;
+      transform: scale(1.08);
+    }
+    .copyright {
+      font-size: 0.8rem;
+      color: #8E643F;
+    }
+
+    /* animations on scroll (simple) */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    .hero-content, .showcase, .footer-wave {
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+
+    /* responsive tweaks */
+    @media (max-width: 720px) {
+      .hero {
+        padding: 1.5rem 1rem;
+      }
+      .feature-card {
+        width: 160px;
+        padding: 1rem;
+      }
+      .bottle-item {
+        width: 220px;
+      }
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <!-- floating citrus slices -->
+    <div class="floating-bg">
+      <div class="float-item">🍊</div>
+      <div class="float-item">🍋</div>
+      <div class="float-item">🍹</div>
+      <div class="float-item">🍊</div>
+      <div class="float-item">🍍</div>
+      <div class="float-item">🍸</div>
+    </div>
+
+    <div class="hero-content">
+      <div class="brand-badge">✨ SUMMER EDITION 2026 ✨</div>
+      <h1>DAYDRINK.</h1>
+      <div class="tagline">Sip into sunshine — premium spritz, zero regrets.</div>
+      
+      <!-- flavor quick chips -->
+      <div class="flavor-grid">
+        <span class="flavor-chip">🍊 Blood Orange + Rosemary</span>
+        <span class="flavor-chip">🍋 Yuzu & Lemongrass</span>
+        <span class="flavor-chip">🍓 Strawberry Hibiscus</span>
+        <span class="flavor-chip">🍑 Peach & Ginger</span>
+      </div>
+
+      <div class="cta-buttons">
+        <a href="#" class="btn-primary">✨ Shop Daydrink ✨</a>
+        <a href="#" class="btn-outline">🌿 Discover Flavors →</a>
+      </div>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🌱</div>
+          <h4>Clean Ingredients</h4>
+          <p>Real fruit, no artificial nonsense</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h4>5% ABV</h4>
+          <p>Light, bright & sessionable</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">♻️</div>
+          <h4>Eco-Friendly</h4>
+          <p>100% recyclable cans & boxes</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🍹</div>
+          <h4>Ready to Sip</h4>
+          <p>Just chill, crack & enjoy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- bottle showcase section -->
+  <div class="showcase">
+    <div class="section-title">Our Daydrink Collection</div>
+    <div class="section-desc">Vibrant, crisp, and made for sunny afternoons & golden hours.</div>
+    <div class="bottle-grid">
+      <div class="bottle-item">
+        <div class="bottle-img">🍊🧡</div>
+        <h3>Citrus Wave</h3>
+        <div class="flavor-note">blood orange + sea salt</div>
+        <div class="price">$14.99 / 4pk</div>
+        <button class="shop-btn">Add to Cart</button>
+      </div>
+      <div class="bottle-item">
+        <div class="bottle-img">🍋💛</div>
+        <h3>Golden Hour</h3>
+        <div class="flavor-note">yuzu, lemongrass, mint</div>
+        <div class="price">$14.99 / 4pk</div>
+        <button class="shop-btn">Add to Cart</button>
+      </div>
+      <div class="bottle-item">
+        <div class="bottle-img">🍓❤️</div>
+        <h3>Berry Spritz</h3>
+        <div class="flavor-note">strawberry + rosehip</div>
+        <div class="price">$15.49 / 4pk</div>
+        <button class="shop-btn">Add to Cart</button>
+      </div>
+      <div class="bottle-item">
+        <div class="bottle-img">🍑🧡</div>
+        <h3>Peach Fuzz</h3>
+        <div class="flavor-note">white peach & ginger</div>
+        <div class="price">$15.49 / 4pk</div>
+        <button class="shop-btn">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- lifestyle / extra quote block -->
+  <div style="background: linear-gradient(120deg, #FFF0DF, #FFE8D3); padding: 2rem 1rem; text-align: center;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <span style="font-size: 2rem;">🍾</span>
+      <p style="font-size: 1.2rem; font-weight: 500; color:#A45219; margin: 0.8rem 0;">“A Daydrink a day keeps the blues away — made for lazy afternoons, poolside hangs, and rooftop cheers.”</p>
+      <p style="color:#B95E26;">✨ 0g added sugar • gluten-free • vegan friendly ✨</p>
+    </div>
+  </div>
+
+  <!-- footer social + wave effect -->
+  <div class="footer-wave">
+    <div class="social-links">
+      <a href="#" class="social-icon">📷</a>
+      <a href="#" class="social-icon">🐦</a>
+      <a href="#" class="social-icon">🎵</a>
+      <a href="#" class="social-icon">📘</a>
+    </div>
+    <p style="margin-bottom: 0.5rem; font-weight: 500; color:#BB632A;">#DaydrinkMoments</p>
+    <div class="copyright">
+      © 2026 Daydrink Co. — Sip sustainably, live vibrantly.
+    </div>
+  </div>
+
+  <!-- simple interactive alert for demo purpose (no backend) -->
+  <script>
+    // just to give interactive feedback for buttons (demo style)
+    const btns = document.querySelectorAll('.shop-btn, .btn-primary, .btn-outline');
+    btns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if(btn.classList.contains('shop-btn')) {
+          alert('🍹 Added to your cart! Cheers to a bright day.');
+        } else if(btn.classList.contains('btn-primary')) {
+          alert('✨ Welcome to Daydrink! Explore our refreshing collection.');
+        } else if(btn.classList.contains('btn-outline')) {
+          alert('🌿 Discover all natural flavors — coming right up!');
+        }
+      });
+    });
+    // flavor chip alert not needed but fun (optional)
+    const chips = document.querySelectorAll('.flavor-chip');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        alert(`You clicked ${chip.innerText} — one of our fan faves!`);
+      });
+    });
+  </script>
+</body>
+</html>
